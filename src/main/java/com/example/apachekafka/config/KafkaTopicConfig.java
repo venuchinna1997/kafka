@@ -13,4 +13,9 @@ public class KafkaTopicConfig {
     public NewTopic learningTopic(){
         return TopicBuilder.name(Constants.KAFKA_TOPIC_ONE).build();
     }
+
+
+    public NewTopic learningJsonTopic(){
+        return TopicBuilder.name(Constants.KAFKA_TOPIC_TWO).build();
+    }
 }

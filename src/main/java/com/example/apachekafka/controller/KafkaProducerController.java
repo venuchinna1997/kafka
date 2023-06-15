@@ -1,13 +1,11 @@
 package com.example.apachekafka.controller;
 
+import com.example.apachekafka.entity.User;
 import com.example.apachekafka.service.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -21,5 +19,11 @@ public class KafkaProducerController {
     public ResponseEntity<String> publish(@RequestParam String message){
          kafkaProducer.sendMessage(message);
          return ResponseEntity.ok("Message sent to Kafka Topic");
+    }
+
+    @PostMapping("/jsonPublish")
+    public ResponseEntity<String> publish(@RequestBody User user){
+        kafkaProducer.sendJsonMessage(user);
+        return ResponseEntity.ok("Json message sent to Kafka Topic");
     }
 }
